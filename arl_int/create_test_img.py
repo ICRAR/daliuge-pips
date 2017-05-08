@@ -22,11 +22,11 @@
 
 from arl.util.testing_support import create_test_image
 
-from .common import cellsize, dump
+from .common import frequency, cellsize, dump
 
 
 def main():
-    m31image = create_test_image(cellsize=cellsize, npol=1, nchan=1)
+    m31image = create_test_image(frequency=frequency, cellsize=cellsize)
     dump(1, m31image)
 
 if __name__ == '__main__':

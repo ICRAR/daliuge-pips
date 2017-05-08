@@ -41,12 +41,13 @@ def load(n):
     with open(sys.argv[n], "rb") as fin:
         return pickle.load(fin)
 
-cellsize = 2e-5
+cellsize = 0.0005#2e-5
 params = {'wstep': 100.0, 'npixel': 512, 'cellsize': cellsize, 'niter': 1000, 'scales':[0,10,30],
               'threshold': 0.001, 'fracthresh': 0.01, 'weighting':'uniform'}
 
-vlaa = create_named_configuration('VLAA')
-vlaa.data['xyz'] = vlaa.data['xyz']
-times = numpy.arange(-numpy.pi / 2.0, +numpy.pi / 2.0, 0.05)
+lowcore = create_named_configuration('LOWBD2-CORE')
+#lowcore.data['xyz'] = lowcore.data['xyz']
+times = numpy.zeros([1])#numpy.arange(-numpy.pi / 2.0, +numpy.pi / 2.0, 0.05)
 frequency = numpy.array([1e8])
-phasecentre = SkyCoord(0.0 * u.rad, u.rad * numpy.pi / 4, frame='icrs', equinox=2000.0)
+channel_bandwidth = numpy.array([1e6])
+phasecentre = SkyCoord(ra=+15.0 * u.deg, dec=-45.0 * u.deg, frame='icrs', equinox=2000.0)

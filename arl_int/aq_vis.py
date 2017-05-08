@@ -19,14 +19,14 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 #    MA 02111-1307  USA
 #
-from arl.visibility.operations import aq_visibility
+from arl.visibility.operations import qa_visibility
 
 from .common import load, dump_text
 
 
 def main():
     vis = load(1)
-    qa = aq_visibility(vis)
+    qa = qa_visibility(vis)
     dump_text(2, str(qa.data))
 
 if __name__ == '__main__':

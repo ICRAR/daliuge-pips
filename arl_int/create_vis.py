@@ -21,12 +21,14 @@
 #
 
 
-from .common import vlaa, times, frequency, phasecentre, dump
+from .common import lowcore, times, frequency, phasecentre, dump, channel_bandwidth
 from arl.visibility.operations import create_visibility
 
 
 def main():
-    vis = create_visibility(vlaa, times, frequency, weight=1.0, phasecentre=phasecentre)
+    vis = create_visibility(lowcore, times, frequency,
+    channel_bandwidth=channel_bandwidth, weight=1.0,
+    phasecentre=phasecentre)
     dump(1, vis)
 
 if __name__ == '__main__':
