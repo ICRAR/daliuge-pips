@@ -27,7 +27,6 @@ setup(
     author="ICRAR",
     packages=find_packages(),
     install_requires=[
-        'dfms',
         'algorithm-reference-library'
     ]
 )
