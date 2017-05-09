@@ -30,7 +30,7 @@ from .common import load
 def main():
     vis = load(1)
     if len(sys.argv) > 3:
-        vis2 = load(2)
+        vis2 = load(2) # model vis
         fout = sys.argv[3]
     else:
         vis2 = None
@@ -38,9 +38,11 @@ def main():
 
     uvdist = numpy.sqrt(vis.data['uvw'][:, 0] ** 2 + vis.data['uvw'][:, 1] ** 2)
     plt.clf()
-    plt.plot(uvdist, numpy.abs(vis.data['vis']), '.')
     if vis2 is not None:
-        plt.plot(uvdist, numpy.abs(vis.data['vis'] - vis2.data['vis']), '.', color='r')
+        plt.plot(uvdist, numpy.abs(vis.data['vis'] - vis2.data['vis']), '.',
+        color='r', label='Residual')
+    plt.plot(uvdist, numpy.abs(vis.data['vis']), '.', color='b',
+    label='Original')
     plt.xlabel('uvdist')
     plt.ylabel('Amp Visibility')
     plt.savefig('%s_amp_vis.png' % fout)
