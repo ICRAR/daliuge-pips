@@ -38,12 +38,12 @@ def main():
 
     uvdist = numpy.sqrt(vis.data['uvw'][:, 0] ** 2 + vis.data['uvw'][:, 1] ** 2)
     plt.clf()
-    plt.plot(uvdist, numpy.abs(vis.data['vis'][:, 0, 0]), '.')
+    plt.plot(uvdist, numpy.abs(vis.data['vis']), '.')
     if vis2 is not None:
-        plt.plot(uvdist, numpy.abs(vis.data['vis'][:, 0, 0] - vis2.data['vis'][:, 0, 0]), '.', color='r')
+        plt.plot(uvdist, numpy.abs(vis.data['vis'] - vis2.data['vis']), '.', color='r')
     plt.xlabel('uvdist')
     plt.ylabel('Amp Visibility')
-    plt.savefig(fout)
+    plt.savefig('%s_amp_vis.png' % fout)
 
 if __name__ == '__main__':
     main()

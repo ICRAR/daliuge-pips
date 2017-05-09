@@ -29,11 +29,13 @@ from .common import frequency, load
 
 def main():
 
-    vis = load(1)
-    for f in frequency:
-        x = f / const.c
-        plt.plot(x * vis.data['uvw'][:, 0], x * vis.data['uvw'][:, 1], '.', color='b')
-        plt.plot(-x * vis.data['uvw'][:, 0], -x * vis.data['uvw'][:, 1], '.', color='r')
+    vt = load(1)
+    plt.plot(vt.data['uvw'][:,0], vt.data['uvw'][:,1], '.', color='b')
+    plt.plot(-vt.data['uvw'][:,0], -vt.data['uvw'][:,1], '.', color='b')
+    # for f in frequency:
+    #     x = f / const.c
+    #     plt.plot(x * vis.data['uvw'][:, 0], x * vis.data['uvw'][:, 1], '.', color='b')
+    #     plt.plot(-x * vis.data['uvw'][:, 0], -x * vis.data['uvw'][:, 1], '.', color='r')
     plt.savefig(sys.argv[2])
 
 if __name__ == '__main__':

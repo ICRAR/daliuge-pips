@@ -19,14 +19,27 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 #    MA 02111-1307  USA
 #
-from arl.fourier_transforms.ftprocessor import create_image_from_visibility
+import sys
+import logging
 
+from arl.fourier_transforms.ftprocessor import create_image_from_visibility, \
+invert_2d
+from arl.image.operations import show_image
 from .common import params, load, dump
 
 def main():
-    vis = load(1)
-    im = create_image_from_visibility(vis, params)
-    dump(2, im)
+
+    vt = load(1)
+
+    #TODO move cellsize and npixel to Drop parameters
+    model = create_image_from_visibility(vt, cellsize=0.001, npixel=256)
+    dirty, sumwt = invert_2d(vt, model)
+    psf, sumwt = invert_2d(vt, model, dopsf=True)
+    fig = show_image(dirty)
+    png = '%s_dirty_img.png' % sys.argv[4]
+    fig.savefig(png)
+    dump(2, psf)
+    dump(3, dirty)
 
 if __name__ == '__main__':
     main()

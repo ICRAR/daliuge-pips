@@ -20,13 +20,23 @@
 #    MA 02111-1307  USA
 #
 
+import sys
+
 from arl.util.testing_support import create_test_image
+from arl.image.operations import show_image
 
-from .common import frequency, cellsize, dump
-
+from .common import frequency, cellsize, dump, load
 
 def main():
     m31image = create_test_image(frequency=frequency, cellsize=cellsize)
+    nchan, npol, ny, nx = m31image.data.shape
+    vt = load(3)
+    m31image.wcs.wcs.crval[0] = vt.phasecentre.ra.deg
+    m31image.wcs.wcs.crval[1] = vt.phasecentre.dec.deg
+    m31image.wcs.wcs.crpix[0] = float(nx // 2)
+    m31image.wcs.wcs.crpix[1] = float(ny // 2)
+    fig = show_image(m31image)
+    fig.savefig('%s_created_img.png' % sys.argv[2])
     dump(1, m31image)
 
 if __name__ == '__main__':

@@ -27,8 +27,8 @@ from .common import load, dump, params
 def main():
     vis = load(1)
     m31image = load(2)
-    vis = predict_2d(vis, m31image)#, params=params)
-    dump(3, vis)
+    vis1 = predict_2d(vis, m31image)#, params=params)
+    dump(3, vis1)
 
 if __name__ == '__main__':
     main()

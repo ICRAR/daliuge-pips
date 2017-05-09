@@ -25,10 +25,13 @@ from .common import load, dump, params
 
 
 def main():
-    dirty = load(1)
-    psf = load(2)
-    cleanimage, residual = deconvolve_cube(dirty, psf, params=params)
-    dump(3, cleanimage)
+    dirty = load(2)
+    psf = load(1)
+
+    comp, residual = deconvolve_cube(dirty, psf, niter=1000, threshold=0.001,
+    fracthresh=0.01, window='quarter', gain=0.7, scales=[0, 3, 10, 30])
+
+    dump(3, comp)
     dump(4, residual)
 
 if __name__ == '__main__':
