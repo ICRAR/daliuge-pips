@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 """
+chen.wu@icrar.org
 
 How to run:
 
@@ -42,12 +43,11 @@ if comm.rank == 0:
 else:
     gbuf = None
 
-
 for i_base in range(0, image_count, comm.size):
     i = i_base + comm.rank
     #
     if i < image_count:
-        img  = np.nan_to_num(images[i])            # load image from HDF file
+        img  = np.nan_to_num(images[i])            # load image from FITS file
         img_ = fft2(img)            # 2D FFT
         whi_ = img_ * kernel_       # multiply with kernel in freq.-space
         #whi_  = img_
@@ -60,7 +60,7 @@ for i_base in range(0, image_count, comm.size):
         root=0               # rank 0 is root the root-porcess
     )
 
-    # rank 0 has to write into the HDF file
+    # rank 0 has to write into the FITS file
     if comm.rank == 0:
         # Sequentially append each of the images
         for r in range(comm.size):
