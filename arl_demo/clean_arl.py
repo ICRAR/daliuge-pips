@@ -57,8 +57,8 @@ def main():
         dlg_string=os.environ['DLG_UID']
         dlg_string=dlg_string[(dlg_string.rindex('_')+1):len(dlg_string)]
         dlg_uid=dlg_string.split('/')
-	Freq_Iteration= dlg_uid[1]  # derived from ID
-	Facet_Iteration=dlg_uid[2]  # derived from ID
+	Freq_Iteration= int(dlg_uid[1])  # derived from ID
+	Facet_Iteration=int(dlg_uid[2])  # derived from ID
 	vt = load(1)
 	phasecentre_array=[[+15,-45],[+15.2,-45],[+15,-44],[+14.8,-45],[+15,-46]]
 
